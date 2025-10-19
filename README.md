@@ -15,17 +15,16 @@ A RESTful API application for managing soccer teams, players, and transfers. Bui
 
 Before you begin, ensure you have the following installed:
 
-- PHP >= 8.2
+- PHP >= 8.4
 - Composer
 - MySQL or SQLite
-- Node.js and NPM (for asset compilation, if needed)
 
 ## Installation
 
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd SoccerManager
+cd Soccer-Manager
 ```
 
 2. Install PHP dependencies:
@@ -101,14 +100,24 @@ A complete Postman collection is available in the repository:
 - `POST /api/transfers/buy` - Buy a player from transfer list
 - `GET /api/transfers/history` - View transfer history
 
-### Using the Postman Collection
+### Using the Postman Collection for Documentation
 
-1. Import `Soccer manager.postman_collection.json` into Postman
+1. Import [`Soccer_manager.postman_collection.json`](Soccer_manager.postman_collection.json) into Postman
 2. The collection includes environment variables:
    - `base`: Base URL (default: `http://localhost:8000`)
    - `token`: Authentication token (automatically set after login/register)
 3. Start with the Auth folder to register or login
 4. The bearer token will be automatically set for subsequent requests
+
+
+
+### Localization
+
+If you need localization, you must pass the Accept-Language header in your requests. Available languages are:
+
+- `ka` (Georgian)
+- `en` (English)
+
 
 ## Running Tests
 
@@ -120,7 +129,6 @@ The application uses Pest PHP for testing. Run the test suite with:
 
 
 ### Code Quality Tools
-
 
 Run Laravel Pint for code formatting:
 
