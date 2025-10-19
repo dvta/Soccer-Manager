@@ -11,15 +11,21 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.10.1",
+        "spatie/laravel-data": "^4.18",
+        "spatie/laravel-translatable": "^6.11"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.7",
         "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.24",
+        "laravel/pint": "^1.25",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
+        "pestphp/pest": "^3.8",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5.3"
     },
     "autoload": {
@@ -49,7 +55,13 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
-            "@php artisan test"
+            "./vendor/bin/pest"
+        ],
+        "phpstan": [
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "phpstan:baseline": [
+            "./vendor/bin/phpstan analyse --memory-limit=2G --generate-baseline"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

@@ -1,61 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Soccer Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful API application for managing soccer teams, players, and transfers. Built with Laravel 12, this application provides a complete system for team management including player transfers, team updates, and multi-language support.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- User authentication with Laravel Sanctum
+- Team management (view and update teams)
+- Player management (update player details)
+- Transfer market system (list players, buy players, view transfer history)
+- Multi-language support (English and Georgian)
+- Comprehensive API endpoints for all operations
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Before you begin, ensure you have the following installed:
 
-## Learning Laravel
+- PHP >= 8.2
+- Composer
+- MySQL or SQLite
+- Node.js and NPM (for asset compilation, if needed)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd SoccerManager
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Install PHP dependencies:
+```bash
+composer install
+```
 
-## Laravel Sponsors
+3. Copy the environment file and configure your database:
+```bash
+cp .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Edit the `.env` file and set your database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=soccer_manager
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-### Premium Partners
+5. Generate application key:
+```bash
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+6. Run database migrations:
+```bash
+php artisan migrate
+```
 
-## Contributing
+7. Seed the database with sample data:
+```bash
+php artisan db:seed
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Running the Application
 
-## Code of Conduct
+Start the Laravel development server:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+The application will be available at `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## API Documentation
 
-## License
+A complete Postman collection is available in the repository:
+- **File**: `Soccer manager.postman_collection.json`
+- **Base URL**: `http://localhost:8000`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Available Endpoints
+
+#### Authentication
+- `POST /api/register` - Register a new user
+- `POST /api/login` - Login user
+- `POST /api/logout` - Logout user
+- `GET /api/me` - Get authenticated user details
+
+#### Team Management
+- `GET /api/team` - Get user's team
+- `PUT /api/team` - Update team details
+
+#### Player Management
+- `PUT /api/players/{player_id}` - Update player details
+
+#### Transfer Market
+- `GET /api/transfer-list` - View available players for transfer
+- `POST /api/players/{player_id}/list-for-transfer` - List a player for transfer
+- `DELETE /api/players/{player_id}/remove-from-transfer-list` - Remove player from transfer list
+- `POST /api/transfers/buy` - Buy a player from transfer list
+- `GET /api/transfers/history` - View transfer history
+
+### Using the Postman Collection
+
+1. Import `Soccer manager.postman_collection.json` into Postman
+2. The collection includes environment variables:
+   - `base`: Base URL (default: `http://localhost:8000`)
+   - `token`: Authentication token (automatically set after login/register)
+3. Start with the Auth folder to register or login
+4. The bearer token will be automatically set for subsequent requests
+
+## Running Tests
+
+The application uses Pest PHP for testing. Run the test suite with:
+
+```bash
+./vendor/bin/pest
+```
+
+
+### Code Quality Tools
+
+
+Run Laravel Pint for code formatting:
+
+```bash
+./vendor/bin/pint
+```

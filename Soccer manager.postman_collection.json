@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "4164ef6a-127b-4301-80d6-dbe9052b396e",
+		"name": "Soccer manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16838025"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/register?name=jora 7&email=j7@sm.com&password=password&password_confirmation=password",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "jora 7"
+								},
+								{
+									"key": "email",
+									"value": "j7@sm.com"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.collectionVariables.set(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"j6@sm.com\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/login",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/logout",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/me",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Team",
+			"item": [
+				{
+					"name": "Get Team",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/team",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Team",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ka",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/team?name=update name 2&country_id=2",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"team"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "update name 2"
+								},
+								{
+									"key": "country_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Player",
+			"item": [
+				{
+					"name": "Update Player",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/players/:player_id?last_name=updated player 1 en&first_name=updated player 1 en2&country_id=2",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"players",
+								":player_id"
+							],
+							"query": [
+								{
+									"key": "last_name",
+									"value": "updated player 1 en"
+								},
+								{
+									"key": "first_name",
+									"value": "updated player 1 en2"
+								},
+								{
+									"key": "country_id",
+									"value": "2"
+								}
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "101"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "Transfer List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/transfer-list",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"transfer-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buy Player",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"player_id\": 101\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/api/transfers/buy",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"transfers",
+								"buy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer Histories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/transfers/history",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"transfers",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Player to transfer List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/players/:player_id/remove-from-transfer-list",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"players",
+								":player_id",
+								"remove-from-transfer-list"
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "74"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Player to transfer List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base}}/api/players/:player_id/list-for-transfer?asking_price=1500000",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"api",
+								"players",
+								":player_id",
+								"list-for-transfer"
+							],
+							"query": [
+								{
+									"key": "asking_price",
+									"value": "1500000"
+								}
+							],
+							"variable": [
+								{
+									"key": "player_id",
+									"value": "101"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
